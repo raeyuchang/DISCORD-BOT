@@ -12,7 +12,7 @@
 int guess_ans;
 int randomNumber[4];
 std::string ans1, ans2, ans3, ans4, ans;
-const std::string BOT_TOKEN = "MTEyNDY3ODA1NTc0NzY3MDA0Nw.GTZO0p.Un4HOdoXhp2y55zA6ULM_vh4_9___saKCZn1Jk"; //Put your TOKEN here!!
+const std::string BOT_TOKEN = "Your BOT TOKEN"; //Put your TOKEN here!!
 //int64_t guess_ans = 0;
 
 int main() {
@@ -23,11 +23,11 @@ int main() {
 
     bot.on_ready([&](const dpp::ready_t& event) {
         if (dpp::run_once<struct register_bot_commands>()) {
-            //Greeting (6pts)
+            //Greeting 
             dpp::slashcommand greeting("greeting", "Say Hello to the given username", bot.me.id);
             greeting.add_option(dpp::command_option(dpp::co_string, "name", "Please enter the username", true));
             bot.global_command_create(greeting);
-            //Add (3pts)
+            //Add 
             dpp::slashcommand add("add", "Add two given integers", bot.me.id);
             add.add_option(
                 dpp::command_option(dpp::co_string, "number_1", "Please enter an integer", true)
@@ -36,7 +36,7 @@ int main() {
                 dpp::command_option(dpp::co_string, "number_2", "Please enter an integer", true)
             );
             bot.global_command_create(add);
-            //Sub (3pts)
+            //Sub 
             dpp::slashcommand sub("sub", "Subtract two given integers", bot.me.id);
             sub.add_option(
                 dpp::command_option(dpp::co_string, "number_1", "Please enter an integer", true)
@@ -46,7 +46,7 @@ int main() {
             );
             bot.global_command_create(sub);
 
-            //Mul (3pts)
+            //Mul 
             dpp::slashcommand mul("mul", "Multiply two given integers", bot.me.id);
             mul.add_option(
                 dpp::command_option(dpp::co_string, "number_1", "Please enter an integer", true)
@@ -55,7 +55,7 @@ int main() {
                 dpp::command_option(dpp::co_string, "number_2", "Please enter an integer", true)
             );
             bot.global_command_create(mul);
-            //Reset (5pts)
+            //Reset 
             dpp::slashcommand reset("reset", "Randomly generate an integer between 1 to 100", bot.me.id);
             bot.global_command_create(reset);
 
@@ -65,7 +65,7 @@ int main() {
                 dpp::command_option(dpp::co_string, "guess_num", "Please guess a number between 1 to 100", true)
             );
             bot.global_command_create(guess);
-            //Write (5pts)
+            //Write 
             dpp::slashcommand write("write", "write a diary", bot.me.id);
             bot.global_command_create(write);
             //Read (5pts)
@@ -77,7 +77,7 @@ int main() {
                 dpp::command_option(dpp::co_string, "username", "Please enter the username", true)
             );
             bot.global_command_create(read);
-            //Remove (5pts)
+            //Remove 
             dpp::slashcommand remove("remove", "remove a dirary from documents", bot.me.id);
             remove.add_option(
                 dpp::command_option(dpp::co_string, "date", "The date of the diary to remove", true)
@@ -86,45 +86,44 @@ int main() {
                 dpp::command_option(dpp::co_string, "username", "Please enter the username", true)
             );
             bot.global_command_create(remove);
-            //接下來，請放上你們的自訂功能
             //abgame
-            dpp::slashcommand abgame("abgame", "Game", bot.me.id);
-            abgame.add_option(
-                dpp::command_option(dpp::co_string, "first_num", "The first num", true)
-            );
-            abgame.add_option(
-                dpp::command_option(dpp::co_string, "second_num", "The second num", true)
-            );
-            abgame.add_option(
-                dpp::command_option(dpp::co_string, "third_num", "The third num", true)
-            );
-            abgame.add_option(
-                dpp::command_option(dpp::co_string, "fourth_num", "The fourth num", true)
-            );
-            bot.global_command_create(abgame);
+                dpp::slashcommand abgame("abgame", "Game", bot.me.id);
+                abgame.add_option(
+                    dpp::command_option(dpp::co_string, "first_num", "The first num", true)
+                );
+                abgame.add_option(
+                    dpp::command_option(dpp::co_string, "second_num", "The second num", true)
+                );
+                abgame.add_option(
+                    dpp::command_option(dpp::co_string, "third_num", "The third num", true)
+                );
+                abgame.add_option(
+                    dpp::command_option(dpp::co_string, "fourth_num", "The fourth num", true)
+                );
+                bot.global_command_create(abgame);
             //help diary
             dpp::slashcommand help_diary("help_diary", "Get a manual of this Bot!!", bot.me.id);
             bot.global_command_create(help_diary);
             //reset3a2b
             dpp::slashcommand reset3a2b("reset3a2b", "Randomly generate 3A2B", bot.me.id);
             bot.global_command_create(reset3a2b);
-            //Ansofab (5pts)
+            //Ansofab 
             dpp::slashcommand answer_ab("answer_ab", "Give the ans of 3A2B", bot.me.id);
             bot.global_command_create(answer_ab);
-            //Ansofguess (5pts)
+            //Ansofguess 
             dpp::slashcommand answer_guess("answer_guess", "Give the ans of Guess Num", bot.me.id);
             bot.global_command_create(answer_guess);
         }   
        });
 
     bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
-        //Greeting (5pts)
+        //Greeting 
         if (event.command.get_command_name() == "greeting") {
             //string s;
             std::string name = std::get<std::string>(event.get_parameter("name"));
             event.reply("Welcome to Sprout "+name);
         }
-        //Add (5pts)
+        //Add 
         if (event.command.get_command_name() == "add") {
             std::string n1 = std::get<std::string>(event.get_parameter("number_1"));
             std::string n2 = std::get<std::string>(event.get_parameter("number_2"));
@@ -134,7 +133,7 @@ int main() {
             event.reply("[Add] The result is " + n1 + " + " + n2 + " = " + ans);
         }
         
-        //Sub (5pts)
+        //Sub 
         if (event.command.get_command_name() == "sub") {
             std::string n1 = std::get<std::string>(event.get_parameter("number_1"));
             std::string n2 = std::get<std::string>(event.get_parameter("number_2"));
@@ -145,7 +144,7 @@ int main() {
             event.reply("[Sub] The result is " + n1 + " - " + n2 + " = " + ans);
         }
         
-        //Mul (5pts)
+        //Mul 
         if (event.command.get_command_name() == "mul") {
             std::string n1 = std::get<std::string>(event.get_parameter("number_1"));
             std::string n2 = std::get<std::string>(event.get_parameter("number_2"));
@@ -157,7 +156,7 @@ int main() {
             
         }
         
-        //Reset (5pts)
+        //Reset 
         if (event.command.get_command_name() == "reset") 
         {
             guess_ans = rand() % 100;
@@ -169,7 +168,7 @@ int main() {
         {
             event.reply("Reset successful! " + ans);
         }
-        //Guess (5pts)
+        //Guess 
         if (event.command.get_command_name() == "guess") 
         {
             std::string guessing = std::get<std::string>(event.get_parameter("guess_num"));
@@ -191,7 +190,7 @@ int main() {
             }
         }
         
-        //Write (5pts)
+        //Write 
         if (event.command.get_command_name() == "write") {
             dpp::interaction_modal_response modal("my_modal", "Please enter stuff");
             //  Add a text component 
@@ -243,7 +242,7 @@ int main() {
             event.dialog(modal);
 
         }
-        //Read (5pts)
+        //Read 
         if (event.command.get_command_name() == "read") {
             std::string date = std::get<std::string>(event.get_parameter("date"));
             std::string username = std::get<std::string>(event.get_parameter("username"));
